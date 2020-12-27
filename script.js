@@ -6,14 +6,23 @@ const form = document.getElementById('form');
 const text = document.getElementById('text');
 const amount = document.getElementById('amount');
 
-const dummyTransactions = [
-  { id: 1, text: 'Flower', amount: -20 },
-  { id: 2, text: 'Salary', amount: 300 },
-  { id: 3, text: 'Book', amount: -10 },
-  { id: 4, text: 'Camera', amount: 150 },
-];
+// const dummyTransactions = [
+//   { id: 1, text: 'Flower', amount: -20 },
+//   { id: 2, text: 'Salary', amount: 300 },
+//   { id: 3, text: 'Book', amount: -10 },
+//   { id: 4, text: 'Camera', amount: 150 },
+// ];
 
-let transactions = dummyTransactions;
+// sessionStorage is similar to localStorage; the difference is that while data in localStorage doesn't expire, data in sessionStorage is cleared when the page session ends. A page session lasts as long as the tab or the browser is open, and survives over page reloads and restores
+// When we pull it out, it's a stringified array; parsing it into an array
+const sessionStorageTransactions = JSON.parse(
+  sessionStorage.getItem('transactions')
+);
+
+let transactions =
+  sessionStorage.getItem('transactions') !== null
+    ? sessionStorageTransactions
+    : [];
 
 // Add transaction
 function addTransaction(e) {
@@ -33,6 +42,8 @@ function addTransaction(e) {
     addTransactionDOM(transaction);
 
     updateValues();
+
+    updateSessionStorage();
 
     text.value = '';
     amount.value = '';
@@ -92,7 +103,15 @@ function updateValues() {
 function removeTransaction(id) {
   transactions = transactions.filter((transaction) => transaction.id !== id);
 
+  // Overwrite transactions array with new one
+  updateSessionStorage();
+
   init();
+}
+
+// Update session storage transactions
+function updateSessionStorage() {
+  sessionStorage.setItem('transactions', JSON.stringify(transactions));
 }
 
 // Init app
