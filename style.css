@@ -58,6 +58,7 @@ body {
 }
 
 .inc-exp-container > div {
+  /* flex: 1 is equivalent to flex: 1 1 0 (flex-grow, flex-shrink, flex-basis) https://stackoverflow.com/questions/37386244/what-does-flex-1-mean - flex-grow has a default of 0 */
   flex: 1;
   text-align: center;
 }
