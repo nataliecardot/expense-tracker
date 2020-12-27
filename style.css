@@ -55,6 +55,7 @@ body {
   display: flex;
   justify-content: space-between;
   margin: 20px 0;
+  border-radius: 2px;
 }
 
 .inc-exp-container > div {
@@ -107,6 +108,7 @@ input[type="number"] {
   margin: 10px 0 30px;
   padding: 10px;
   width: 100%;
+  border-radius: 3px;
 }
 
 .btn:focus,
@@ -129,6 +131,7 @@ input[type="number"] {
   position: relative;
   padding: 10px;
   margin: 10px 0;
+  border-radius: 2px;
 }
 
 .list li.plus {
@@ -146,13 +149,14 @@ input[type="number"] {
   color: #fff;
   font-size: 20px;
   line-height: 20px;
-  padding: 2px 5px;
+  padding: 2px 5px 4px 5px;
   position: absolute;
   top: 50%;
   left: 0;
   transform: translate(-100%, -50%);
   opacity: 0;
   transition: opacity 0.3s ease;
+  border-radius: 2px;
 }
 
 .list li:hover .delete-btn {
